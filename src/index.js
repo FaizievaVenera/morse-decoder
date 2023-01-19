@@ -38,7 +38,21 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let words =  expr.split('**********')
+    let word = ''
+    let sentence = ''
+    for(let i=0; i<words.length; i++){
+       for (let j=0; j<Array.from(words[i]).length;j+=10){
+        //console.log(Array.from(words[i]).slice(j,j+10).join('').replaceAll('10','.').replaceAll('11','-').replaceAll('0',''))
+        Array.from(words[i]).slice(j,j+10).join('').replaceAll('10','.').replaceAll('11','-').replaceAll('0','')
+        word = MORSE_TABLE[Array.from(words[i]).slice(j,j+10).join('').replaceAll('10','.').replaceAll('11','-').replaceAll('0','')]
+        sentence +=word
+       }
+       sentence += ' '
+       word = ''
+  
+    }
+    return sentence.trimEnd()
 }
 
 module.exports = {
